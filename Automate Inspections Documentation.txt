@@ -1,0 +1,31 @@
+To whom it might concern.
+
+I would like to suggest a new process implementation. 
+Currently, I managed to develop an Application working on all PWC laptops. It's developed with Python and Shell Scripting. It can be stored in the ITSP server folder or locally. Once it runs it will perform the following steps absolutely automatically:
+
+1: Brightness Test
+2: Camera Test
+3: Operating System Test
+4: Internet Test
+5: Sound Test
+
+These are all the main and most common components that failed.
+Once the test is finished it will automatically populate an online Excel sheet with the following data :
+
+1: GUID (on the current laptop running the test)
+2. Asset Number (on the current laptop running the test)
+3: 'Pass' message for each test performed if it is successful. 
+
+The benefit of the mentioned application will be:
+
+- Ensuring each laptop is performing up to standard.
+- Ensuring each laptop's hardware components are functioning before the PC is given to the customer.
+- Limiting the faults caused between the time the PC is received and stored and the time given to the user. (been locally stored and moved around in the offices)
+- Limiting human interaction and mistake chances.
+- The data is stored online and it can be accessed by each PWC ITSP employee.
+- The data is filled automatically by the application which limits the human error factor once again.
+
+Due to the nature of the application and my coding abilities the functionality can be improved within the time and as per requirements.
+
+Kind Regards
+Valeri
