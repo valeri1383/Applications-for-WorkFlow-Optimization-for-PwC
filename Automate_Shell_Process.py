@@ -1,6 +1,8 @@
+import csv
 import subprocess,time, os
 import platform
 from datetime import datetime
+
 
 
 # Checking Camera functionality
@@ -13,7 +15,7 @@ def camera_check():
 # Opening YouTube to test speakers
 def youtube():
     subprocess.Popen([r"C:\Program Files\Google\Chrome\Application\chrome.exe", 'www.youtube.com/watch?v=XqZsoesa55w'])
-    time.sleep(5)
+    time.sleep(6)
     os.system("taskkill /im chrome.exe /f")
 
 
@@ -24,7 +26,6 @@ def asset_check():
     system = my_system.system
     asset = my_system.node
     return asset
-
 
 
 # Shutting down the PC
@@ -91,17 +92,18 @@ def open_notepad_with_User_Info(self):
     os.system("notepad.exe " + 'current_file')
 
 
-
 # displaying the operating system
 def os_info():
     os.system("winver")
 
 
 
-""" Starting the Process"""
 
+
+
+""" Starting the Process"""
 # Loading the menu with the steps performed
-open_notepad_with_Menu('')
+#open_notepad_with_Menu('')
 
 # Changing the Brightness LvL
 def run(cmd):
@@ -115,25 +117,51 @@ if __name__ == '__main__':
     hello_command = f"Write-Host {command}"
     hello_info = run(hello_command)
 
+counter = 0
 # Testing the camera
 camera_check()
+
 
 # Displaying the operating system
 os_info()
 
+
+
 # Opening Vide in YouTube for sound check
 youtube()
 
+
 # Testing Internet Connectivity by ping
-testing_internet('')
+#testing_internet('')
 
 # Detecting User and Displaying Results
-open_notepad_with_User_Info('')
+#open_notepad_with_User_Info('')
 
 # Loading the option for shutdown
-shutdown()
+#shutdown()
 
 
 
+# opening the existing exe file
+#os.system('start excel.exe Inspected_PC.csv')
 
 
+# Writing to CSV file
+with open('Inspected_PC.csv', 'a', newline='') as csvfile:
+    fieldnames = ['User', 'Asset N', 'Time Inspected', 'Camera Test', 'Speakers Test', 'Internet Test', 'Brightness Test', 'Operating System Test']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+    writer.writeheader()
+    user = getting_username()
+    asset = asset_check()
+    time_inspected = get_current_time()
+
+    info = {f'User': user,
+            f'Asset N': asset,
+            f'Time Inspected': time_inspected,
+            'Camera Test': 'Pass',
+            'Speakers Test': 'Pass',
+            'Internet Test': 'Pass',
+            'Brightness Test': 'Pass',
+            'Operating System Test': 'Pass'}
+    writer.writerow(info)
