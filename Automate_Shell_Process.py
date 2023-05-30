@@ -52,6 +52,13 @@ def testing_internet(self):
     os.system("notepad.exe " + 'current_file')
 
 
+def battery_test():
+    command = 'WMIC PATH Win32_Battery Get EstimatedChargeRemaining, BatteryStatus'
+    output = subprocess.check_output(command, shell=True).decode('utf-8')
+    result = f"Battery status is: {output[59:61]}%"
+    return result
+
+
 # getting the GUID username
 def getting_username():
     user = os.getlogin()
@@ -148,19 +155,21 @@ youtube()
 
 # Writing to CSV file
 with open('Inspected_PC.csv', 'a', newline='') as csvfile:
-    fieldnames = ['User', 'Asset N', 'Time Inspected', 'Camera Test', 'Speakers Test', 'Internet Test', 'Brightness Test', 'Operating System Test']
+    fieldnames = ['User', 'Asset N', 'Time Inspected', 'Camera Test', 'Speakers Test', 'Battery Test', 'Internet Test', 'Brightness Test', 'Operating System Test']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
-    writer.writeheader()
+    #writer.writeheader()
     user = getting_username()
     asset = asset_check()
     time_inspected = get_current_time()
+    battery_lvl = battery_test()
 
     info = {f'User': user,
             f'Asset N': asset,
             f'Time Inspected': time_inspected,
             'Camera Test': 'Pass',
             'Speakers Test': 'Pass',
+            'Battery Test': battery_lvl,
             'Internet Test': 'Pass',
             'Brightness Test': 'Pass',
             'Operating System Test': 'Pass'}
