@@ -104,6 +104,32 @@ def os_info():
     os.system("winver")
 
 
+# Listing USB info with powershell command
+def listing_usb_info():
+    output = ''
+    # PowerShell command
+    powershell_command = "Get-PnpDevice -PresentOnly | Where-Object { $_.InstanceId -match '^USB' }"
+
+    # Execute PowerShell command
+    result = subprocess.run(["powershell", "-Command", powershell_command], capture_output=True, text=True)
+
+    # Check if the command was successful
+    if result.returncode == 0:
+        # Print the command output
+        print(result.stdout)
+        output += result.stdout
+
+    else:
+        # Print the error message
+        print(result.stderr)
+        output += result.stderr
+
+    time.sleep(4)
+
+    with open('USB_TEST.txt', 'w') as file:
+        file.write(output)
+
+    #os.system("notepad.exe " + 'USB_TEST')
 
 
 
@@ -112,6 +138,14 @@ def os_info():
 # Loading the menu with the steps performed
 #open_notepad_with_Menu('')
 
+print('         AUTOMATIC COMPUTER INSPECTION APP\n')
+print("Powered by VALERI VASILEV.\nAll rights Reserved!")
+
+
+# Pinging Google
+os.system('PING 8.8.8.8')
+
+
 # Changing the Brightness LvL
 def run(cmd):
     completed = subprocess.run(["powershell", "-Command", cmd], capture_output=True)
@@ -119,6 +153,7 @@ def run(cmd):
 
 
 if __name__ == '__main__':
+    print()
     take_brightness = input("Please enter the brightness level: ")
     command = "(Get-WmiObject -Namespace root/WMI -Class WmiMonitorBrightnessMethods).WmiSetBrightness(1," + take_brightness + ")"
     hello_command = f"Write-Host {command}"
@@ -147,10 +182,14 @@ youtube()
 # Loading the option for shutdown
 #shutdown()
 
-
+# getting system info
+#os.system("systeminfo ")
 
 # opening the existing exe file
 #os.system('start excel.exe Inspected_PC.csv')
+
+# Listing all USB info
+listing_usb_info()
 
 
 # Writing to CSV file
