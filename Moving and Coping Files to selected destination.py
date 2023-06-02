@@ -1,9 +1,17 @@
+import csv
+from datetime import datetime
 import os
 import shutil
+import platform
 
-# creating source and target folders
-source_folder = os.path.join(os.environ["USERPROFILE"], "Desktop\Source_folder\\")
-destination_folder = os.path.join(os.environ["USERPROFILE"], "Documents\Target_folder\\")
+# creating source
+source_folder = os.path.join(os.environ["USERPROFILE"], "Desktop\\")
+
+
+# creating target folder
+destination_folder = os.path.join(os.environ["USERPROFILE"], "Documents\Backup Files from Desktop\\")
+if not os.path.exists(destination_folder):
+    os.makedirs(destination_folder)
 
 
 def move_files_by_extention():
@@ -68,29 +76,80 @@ def copy_files_by_extention():
     print('All done.')
 
 
+# getting the GUID username
+def getting_username():
+    user = os.getlogin()
+    return user
+
+# getting current time
+def get_current_time():
+    time = datetime.now().strftime('%Y-%m-%d')
+    return time
+
+# Asset checking
+def asset_check():
+    my_system = platform.uname()
+
+    system = my_system.system
+    asset = my_system.node
+    return asset
+
+
+
+with open('Users Moved Data.csv', 'a', newline='') as csvfile:
+    fieldnames = ['Date', 'User', 'Asset N']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+    #writer.writeheader()
+    user = getting_username()
+    asset = asset_check()
+    time_data_moved = get_current_time()
+
+    info = {f'Date': time_data_moved,
+            f'User': user,
+            f'Asset N': asset}
+    writer.writerow(info)
+
+
+
 
 def menu():
-    print("MOVING and COPING App")
-    print("Powered by Valeri Vasilev\n")
-    options = ["    1. Move files by extension\n"
-               "    2. Move all filed and folders\n"
-               "    3. Copy files by extension\n"
-               "    4. Copy all files\n"]
-    for x in options:
-        print(x)
+    user_choice = 1
+    while True:
 
-    user_choice = int(input("What would you like to do? "))
+        if user_choice == 5:
+            break
 
-    list_all_files()
+        print("MOVING and COPING App")
+        print("Powered by Valeri Vasilev\n")
+        options = ["    1. Move files by extension\n"
+                   "    2. Move all filed and folders\n"
+                   "    3. Copy files by extension\n"
+                   "    4. Copy all files\n"
+                   "    5. Exit\n"]
+        for x in options:
+            print(x)
 
-    if user_choice == 1:
-        move_files_by_extention()
-    elif user_choice == 2:
-        move_all_files_and_folders()
-    elif user_choice == 3:
-        copy_files_by_extention()
-    elif user_choice == 4:
-        copy_all_files_from_desktop()
+        user_choice = int(input("What would you like to do? "))
+
+        if user_choice in [1, 2, 3, 4]:
+            list_all_files()
+
+        if user_choice == 1:
+            move_files_by_extention()
+        elif user_choice == 2:
+            move_all_files_and_folders()
+        elif user_choice == 3:
+            copy_files_by_extention()
+        elif user_choice == 4:
+            copy_all_files_from_desktop()
+        elif user_choice == 5:
+            print("Exiting... Have a nice day!")
+            break
+        else:
+            print("Wrong choice option selected!!! Please try again.\n")
+
+
 
 
 menu()
