@@ -4,19 +4,60 @@ import platform
 from datetime import datetime
 
 
+def test_success():
+    user_choice = input("Was the test successfully performed? Y/N: ")
+    if user_choice in ['Y', 'y']:
+        return 'Pass'
+    elif user_choice in ['N', 'n']:
+        return 'False'
+    else:
+        print("Incorrect input!!!")
+
+
+def microphone_test():
+
+    print(f"*" * 4 + "  CHECKING THE Microphone FUNCTIONALITY  " + "*" * 4)
+    subprocess.Popen([r"C:\Program Files\Google\Chrome\Application\chrome.exe", 'https: // www.onlinemictest.com /'])
+    time.sleep(6)
+    #os.system("taskkill /im chrome.exe /f")
+    time.sleep(2)
+    print("\n--- Microphone test has been performed. ---\n")
+    time.sleep(2)
+
+
+
+
+def keyboard_test():
+    print(f"*" * 4 + "  CHECKING THE KEYBOARD FUNCTIONALITY   " + "*" * 4)
+    time.sleep(1)
+    os.system("notepad.exe ")
+    time.sleep(2)
+    print("\n--- Keyboard test has been performed. ---\n")
+    time.sleep(3)
+
 
 # Checking Camera functionality
 def camera_check():
+    print(f"*" * 4 + "  CHECKING THE CAMERA FUNCTIONALITY   " + "*" * 4)
+    time.sleep(3)
     subprocess.run('start microsoft.windows.camera:', shell=True)
     time.sleep(2)
     subprocess.run('Taskkill /IM WindowsCamera.exe /F', shell=True)
+    time.sleep(2)
+    print("\n--- Camera test has been performed. ---\n")
+    time.sleep(2)
+    # yes / no
 
 
-# Opening YouTube to test speakers
-def youtube():
-    subprocess.Popen([r"C:\Program Files\Google\Chrome\Application\chrome.exe", 'www.youtube.com/watch?v=XqZsoesa55w'])
+# Opening Sound_check_website to test speakers
+def sound_check_website():
+    print(f"*" * 4 + "  CHECKING THE SPEAKERS FUNCTIONALITY  " + "*" * 4)
+    subprocess.Popen([r"C:\Program Files\Google\Chrome\Application\chrome.exe", 'https://www.onlinemictest.com/sound-test/'])
     time.sleep(6)
-    os.system("taskkill /im chrome.exe /f")
+    #os.system("taskkill /im chrome.exe /f")
+    time.sleep(2)
+    print("\n--- Speakers test has been performed. ---\n")
+    time.sleep(2)
 
 
 # Asset checking
@@ -44,12 +85,16 @@ def get_current_time():
     return time
 
 
-# Testing internet
-def testing_internet(self):
-    current_file = self
-    with open('current_file', 'w') as file:
-        file.write("Internet Test has been successful")
-    os.system("notepad.exe " + 'current_file')
+def testing_internet():
+    # Pinging Google
+    print(f"*" * 4 + "  CHECKING THE WI-FI CARD   " + "*" * 4)
+
+    os.system('PING 8.8.8.8')
+    print("\n--- Internet connection test has been performed. ---\n")
+
+    # check in the test in PASS / FALSE
+    #print(test_success())
+
 
 
 def battery_test():
@@ -65,26 +110,10 @@ def getting_username():
     return user
 
 
-# Opening Notepad with message
-def open_notepad_with_Menu(self):
-    current_file = self
-    with open('current_file', 'w') as file:
-        file.write('*** SHELL INSPECTION AUTOMATION APP ***\n')
-        file.write('***  Powered by VALERI VASILEV  ***\n')
-        file.write('\n')
-        file.write('    1. Step - Testing the Brightness Lvl\n')
-        file.write('    2. Step - Camera Functionality Check\n')
-        file.write('    3. Step - Displaying the OS System Info\n')
-        file.write('    4. Step - Opening YouTube Video for Sound/Internet check\n')
-        file.write('    5. Step - Testing Internet Connectivity by Ping\n')
-        file.write('    6. Step - Detecting user and Displaying Info\n')
-
-    os.system("notepad.exe " + 'current_file')
-
 
 def open_notepad_with_User_Info(self):
     current_file = self
-    with open('current_file', 'w') as file:
+    with open('current_file,txt', 'w') as file:
         name = getting_username()
         time = get_current_time()
         asset = asset_check()
@@ -101,11 +130,17 @@ def open_notepad_with_User_Info(self):
 
 # displaying the operating system
 def os_info():
+    print(f"*" * 4 + "  CHECKING THE OPERATING SYSTEM   " + "*" * 4)
     os.system("winver")
+    time.sleep(2)
+    print("\n--- OS version has been checked ---\n")
+    time.sleep(2)
 
 
 # Listing USB info with powershell command
 def listing_usb_info():
+    print(f"*" * 4 + "  CHECKING THE USB PORTS FUNCTIONALITY   " + "*" * 4)
+    time.sleep(2)
     output = ''
     # PowerShell command
     powershell_command = "Get-PnpDevice -PresentOnly | Where-Object { $_.InstanceId -match '^USB' }"
@@ -124,11 +159,13 @@ def listing_usb_info():
         print(result.stderr)
         output += result.stderr
 
-    time.sleep(4)
+    print("\n--- USB Functionality test has been performed. ---\n")
+
 
     with open('USB_TEST.txt', 'w') as file:
         file.write(output)
 
+    time.sleep(2)
     #os.system("notepad.exe " + 'USB_TEST')
 
 
@@ -139,14 +176,34 @@ def listing_usb_info():
 #open_notepad_with_Menu('')
 
 print('         AUTOMATIC COMPUTER INSPECTION APP\n')
-print("Powered by VALERI VASILEV.\nAll rights Reserved!")
+time.sleep(1)
+print("Powered by VALERI VASILEV.\nAll rights Reserved!\n")
+time.sleep(3)
 
 
-# Pinging Google
-os.system('PING 8.8.8.8')
+# Testing Internet
+testing_internet()
 
+
+# Testing the camera
+camera_check()
+
+
+# Displaying the operating system
+os_info()
+
+
+# Opening Sound check website
+sound_check_website()
+
+
+# Keyboard check
+keyboard_test()
 
 # Changing the Brightness LvL
+print(f"*" * 4 + "  CHECKING THE BRIGHTNESS FUNCTIONALITY   " + "*" * 4)
+time.sleep(2)
+
 def run(cmd):
     completed = subprocess.run(["powershell", "-Command", cmd], capture_output=True)
     return completed
@@ -160,37 +217,13 @@ if __name__ == '__main__':
     hello_info = run(hello_command)
 
 counter = 0
-# Testing the camera
-camera_check()
 
+print("\n--- Brightness test has been performed. ---\n")
+time.sleep(2)
 
-# Displaying the operating system
-os_info()
-
-
-
-# Opening Vide in YouTube for sound check
-youtube()
-
-
-# Testing Internet Connectivity by ping
-#testing_internet('')
-
-# Detecting User and Displaying Results
-#open_notepad_with_User_Info('')
-
-# Loading the option for shutdown
-#shutdown()
-
-# getting system info
-#os.system("systeminfo ")
-
-# opening the existing exe file
-#os.system('start excel.exe Inspected_PC.csv')
 
 # Listing all USB info
 listing_usb_info()
-
 
 # Writing to CSV file
 with open('Inspected_PC.csv', 'a', newline='') as csvfile:
@@ -213,3 +246,8 @@ with open('Inspected_PC.csv', 'a', newline='') as csvfile:
             'Brightness Test': 'Pass',
             'Operating System Test': 'Pass'}
     writer.writerow(info)
+
+
+
+
+print("ALL TEST ARE DONE. HAVE A NICE DAY")
