@@ -14,6 +14,25 @@ def test_success():
         print("Incorrect input!!!")
 
 
+def changing_color_of_console(color):
+    os.system(color)
+
+    """color of the system:
+
+main colour
+os.system("color e1")
+
+in case of pass change to green
+os.system("color e2")
+
+change to red 
+os.system("color e4")
+
+    """
+
+
+
+
 def microphone_test():
 
     print(f"*" * 4 + "  CHECKING THE Microphone FUNCTIONALITY  " + "*" * 4)
@@ -46,7 +65,8 @@ def camera_check():
     time.sleep(2)
     print("\n--- Camera test has been performed. ---\n")
     time.sleep(2)
-    # yes / no
+    camera_test = test_success()
+    return camera_test
 
 
 # Opening Sound_check_website to test speakers
@@ -93,7 +113,8 @@ def testing_internet():
     print("\n--- Internet connection test has been performed. ---\n")
 
     # check in the test in PASS / FALSE
-    #print(test_success())
+    internet_connection = test_success()
+    return internet_connection
 
 
 
@@ -182,11 +203,11 @@ time.sleep(3)
 
 
 # Testing Internet
-testing_internet()
+internet_test = testing_internet()
 
 
 # Testing the camera
-camera_check()
+camera_test = camera_check()
 
 
 # Displaying the operating system
@@ -196,6 +217,8 @@ os_info()
 # Opening Sound check website
 sound_check_website()
 
+# Microphone test
+microphone_test()
 
 # Keyboard check
 keyboard_test()
@@ -227,7 +250,9 @@ listing_usb_info()
 
 # Writing to CSV file
 with open('Inspected_PC.csv', 'a', newline='') as csvfile:
-    fieldnames = ['User', 'Asset N', 'Time Inspected', 'Camera Test', 'Speakers Test', 'Battery Test', 'Internet Test', 'Brightness Test', 'Operating System Test']
+    fieldnames = ['User', 'Asset N', 'Time Inspected', 'Network Card test', 'Camera Test',
+                  'Operating System Test', 'Speakers Test', 'Microphone Test', 'Battery Test',
+                  'Keyboard Test', 'USB Ports test', 'Brightness Test']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
     #writer.writeheader()
@@ -239,12 +264,16 @@ with open('Inspected_PC.csv', 'a', newline='') as csvfile:
     info = {f'User': user,
             f'Asset N': asset,
             f'Time Inspected': time_inspected,
-            'Camera Test': 'Pass',
+            'Network Card test': internet_test,
+            'Camera Test': camera_test,
+            'Operating System Test': 'Pass',
             'Speakers Test': 'Pass',
+            'Microphone Test': 'Pass',
             'Battery Test': battery_lvl,
-            'Internet Test': 'Pass',
-            'Brightness Test': 'Pass',
-            'Operating System Test': 'Pass'}
+            'Keyboard Test': 'Pass',
+            'USB Ports test': 'pass',
+            'Brightness Test': 'Pass'
+            }
     writer.writerow(info)
 
 
