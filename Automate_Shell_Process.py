@@ -19,35 +19,24 @@ def test_success():
 def changing_color_of_console(color):
     os.system(color)
 
-    """color of the system:
-
-main colour
-os.system("color e1")
-
-in case of pass change to green
-os.system("color e2")
-
-change to red 
-os.system("color e4")
-
-    """
-
-
 
 
 def microphone_test():
 
     print(f"*" * 4 + "  CHECKING THE Microphone FUNCTIONALITY  " + "*" * 4)
-    subprocess.Popen([r"C:\Program Files\Google\Chrome\Application\chrome.exe", 'https://www.onlinemictest.com/'])
-    time.sleep(6)
-    #os.system("taskkill /im chrome.exe /f")
+    print()
     time.sleep(2)
+    subprocess.Popen([r"C:\Program Files\Google\Chrome\Application\chrome.exe", 'https://www.onlinemictest.com/'])
+    time.sleep(4)
     print("\n--- Microphone test has been performed. ---\n")
     time.sleep(2)
+    mic_test = test_success()
+    return mic_test
 
 
 def keyboard_test():
     print(f"*" * 4 + "  CHECKING THE KEYBOARD FUNCTIONALITY   " + "*" * 4)
+    print()
     time.sleep(1)
     os.system("notepad.exe ")
     time.sleep(2)
@@ -60,6 +49,7 @@ def keyboard_test():
 # Checking Camera functionality
 def camera_check():
     print(f"*" * 4 + "  CHECKING THE CAMERA FUNCTIONALITY   " + "*" * 4)
+    print()
     time.sleep(3)
     subprocess.run('start microsoft.windows.camera:', shell=True)
     time.sleep(2)
@@ -111,7 +101,7 @@ def get_current_time():
 def testing_internet():
     # Pinging Google
     print(f"*" * 4 + "  CHECKING THE WI-FI CARD   " + "*" * 4)
-
+    time.sleep(3)
     os.system('PING 8.8.8.8')
     print("\n--- Internet connection test has been performed. ---\n")
 
@@ -202,6 +192,8 @@ def listing_usb_info():
 # Loading the menu with the steps performed
 #open_notepad_with_Menu('')
 
+changing_color_of_console("color E1")
+print()
 print('         AUTOMATIC COMPUTER INSPECTION APP\n')
 time.sleep(1)
 print("Powered by VALERI VASILEV.\nAll rights Reserved!\n")
@@ -224,7 +216,7 @@ os_test = os_info()
 speakers_test = sound_check_website()
 
 # Microphone test
-microphone_test()
+mic_test = microphone_test()
 
 # Keyboard check
 keyboard_test = keyboard_test()
@@ -278,7 +270,7 @@ with open('Inspected_PC.csv', 'a', newline='') as csvfile:
             'Camera Test': camera_test,
             'Operating System Test': os_test,
             'Speakers Test': speakers_test,
-            'Microphone Test': 'Pass',
+            'Microphone Test': mic_test,
             'Battery Test': battery_lvl,
             'Keyboard Test': keyboard_test,
             'Brightness Test': brightness_test,
@@ -286,7 +278,6 @@ with open('Inspected_PC.csv', 'a', newline='') as csvfile:
             }
     writer.writerow(info)
 
-
-
-
-print("ALL TEST ARE DONE. HAVE A NICE DAY")
+print()
+print('*' * 4 +"    ALL TEST ARE DONE. HAVE A NICE DAY  " + '*' * 4)
+time.sleep(4)
