@@ -6,6 +6,8 @@ from datetime import datetime
 
 def test_success():
     user_choice = input("Was the test successfully performed? Y/N: ")
+    print()
+    time.sleep(2)
     if user_choice in ['Y', 'y']:
         return 'Pass'
     elif user_choice in ['N', 'n']:
@@ -36,14 +38,12 @@ os.system("color e4")
 def microphone_test():
 
     print(f"*" * 4 + "  CHECKING THE Microphone FUNCTIONALITY  " + "*" * 4)
-    subprocess.Popen([r"C:\Program Files\Google\Chrome\Application\chrome.exe", 'https: // www.onlinemictest.com /'])
+    subprocess.Popen([r"C:\Program Files\Google\Chrome\Application\chrome.exe", 'https://www.onlinemictest.com/'])
     time.sleep(6)
     #os.system("taskkill /im chrome.exe /f")
     time.sleep(2)
     print("\n--- Microphone test has been performed. ---\n")
     time.sleep(2)
-
-
 
 
 def keyboard_test():
@@ -53,6 +53,8 @@ def keyboard_test():
     time.sleep(2)
     print("\n--- Keyboard test has been performed. ---\n")
     time.sleep(3)
+    keyboard_test = test_success()
+    return keyboard_test
 
 
 # Checking Camera functionality
@@ -78,7 +80,8 @@ def sound_check_website():
     time.sleep(2)
     print("\n--- Speakers test has been performed. ---\n")
     time.sleep(2)
-
+    speakers = test_success()
+    return speakers
 
 # Asset checking
 def asset_check():
@@ -156,6 +159,8 @@ def os_info():
     time.sleep(2)
     print("\n--- OS version has been checked ---\n")
     time.sleep(2)
+    os_test = test_success()
+    return os_test
 
 
 # Listing USB info with powershell command
@@ -182,11 +187,12 @@ def listing_usb_info():
 
     print("\n--- USB Functionality test has been performed. ---\n")
 
-
     with open('USB_TEST.txt', 'w') as file:
         file.write(output)
 
     time.sleep(2)
+    usb_test = test_success()
+    return usb_test
     #os.system("notepad.exe " + 'USB_TEST')
 
 
@@ -211,17 +217,19 @@ camera_test = camera_check()
 
 
 # Displaying the operating system
-os_info()
+os_test = os_info()
 
 
 # Opening Sound check website
-sound_check_website()
+speakers_test = sound_check_website()
 
 # Microphone test
 microphone_test()
 
 # Keyboard check
-keyboard_test()
+keyboard_test = keyboard_test()
+
+
 
 # Changing the Brightness LvL
 print(f"*" * 4 + "  CHECKING THE BRIGHTNESS FUNCTIONALITY   " + "*" * 4)
@@ -244,15 +252,17 @@ counter = 0
 print("\n--- Brightness test has been performed. ---\n")
 time.sleep(2)
 
+brightness_test = test_success()
+
 
 # Listing all USB info
-listing_usb_info()
+usb_test = listing_usb_info()
 
 # Writing to CSV file
 with open('Inspected_PC.csv', 'a', newline='') as csvfile:
     fieldnames = ['User', 'Asset N', 'Time Inspected', 'Network Card test', 'Camera Test',
                   'Operating System Test', 'Speakers Test', 'Microphone Test', 'Battery Test',
-                  'Keyboard Test', 'USB Ports test', 'Brightness Test']
+                  'Keyboard Test', 'Brightness Test', 'USB Ports test']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
     #writer.writeheader()
@@ -266,13 +276,13 @@ with open('Inspected_PC.csv', 'a', newline='') as csvfile:
             f'Time Inspected': time_inspected,
             'Network Card test': internet_test,
             'Camera Test': camera_test,
-            'Operating System Test': 'Pass',
-            'Speakers Test': 'Pass',
+            'Operating System Test': os_test,
+            'Speakers Test': speakers_test,
             'Microphone Test': 'Pass',
             'Battery Test': battery_lvl,
-            'Keyboard Test': 'Pass',
-            'USB Ports test': 'pass',
-            'Brightness Test': 'Pass'
+            'Keyboard Test': keyboard_test,
+            'Brightness Test': brightness_test,
+            'USB Ports test': usb_test
             }
     writer.writerow(info)
 
