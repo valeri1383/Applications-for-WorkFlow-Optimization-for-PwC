@@ -14,7 +14,7 @@ if not os.path.exists(destination_folder):
     os.makedirs(destination_folder)
 
 
-def move_files_by_extention():
+def move_files_by_extension_and_folders_by_name():
     # Get a list of all files in the source directory
     files = os.listdir(source_folder)
     file_extension = input("What type of files (extensions) would you like to move: ")
@@ -49,18 +49,24 @@ def list_all_files():
     print()
 
 
-def copy_all_files_from_desktop():
+def copy_all_files_from_desktop():  # Copy only file without folders due to the permission
     for file_name in os.listdir(source_folder):
         # construct full file path
-        source = source_folder + file_name
-        destination = destination_folder + file_name
-        # copy only files
-        shutil.copy(source, destination)
+        file_path = os.path.join(os.environ["USERPROFILE"], f"Desktop\\{file_name}")
+        if os.path.isdir(file_path):
+            source = source_folder + file_name
+            destination = destination_folder + file_name
+            shutil.copytree(source, destination)
+        else:
+            source = source_folder + file_name
+            destination = destination_folder + file_name
+            # copy only files
+            shutil.copy(source, destination)
     print('All done.')
 
 
 
-def copy_files_by_extention():
+def copy_file_by_extention_and_folders_by_name():
     # Get a list of all files in the source directory
     files = os.listdir(source_folder)
     file_extension = input("What type of files (extensions) would you like to copy: ")
@@ -68,11 +74,17 @@ def copy_files_by_extention():
     # Filter files by extension
     filtered_files = [file for file in files if file.endswith(file_extension)]
 
-    # Copy filtered files to the destination directory
+    # Copy filtered files and folders to the destination directory
     for file in filtered_files:
-        source_path = os.path.join(source_folder, file)
-        destination_path = os.path.join(destination_folder, file)
-        shutil.copy(source_path, destination_path)
+        file_path = os.path.join(os.environ["USERPROFILE"], f"Desktop\\{file}")
+        if os.path.isdir(file_path):
+            source = source_folder + file
+            destination = destination_folder + file
+            shutil.copytree(source, destination)
+        else:
+            source_path = os.path.join(source_folder, file)
+            destination_path = os.path.join(destination_folder, file)
+            shutil.copy(source_path, destination_path)  # Can't copy folder due to permissions
     print('All done.')
 
 
@@ -122,10 +134,10 @@ def menu():
 
         print("MOVING and COPING App")
         print("Powered by Valeri Vasilev\n")
-        options = ["    1. Move files by extension\n"
-                   "    2. Move all filed and folders\n"
-                   "    3. Copy files by extension\n"
-                   "    4. Copy all files\n"
+        options = ["    1. Move Files by extension or Folders by name\n"  # done
+                   "    2. Move all Filed and Folders\n"  # to be tested extra
+                   "    3. Copy files by extension and Folders by name\n"  # done
+                   "    4. Copy all Files and Folders\n"      # done
                    "    5. Exit\n"]
         for x in options:
             print(x)
@@ -136,11 +148,11 @@ def menu():
             list_all_files()
 
         if user_choice == 1:
-            move_files_by_extention()
+            move_files_by_extension_and_folders_by_name()
         elif user_choice == 2:
             move_all_files_and_folders()
         elif user_choice == 3:
-            copy_files_by_extention()
+            copy_file_by_extention_and_folders_by_name()
         elif user_choice == 4:
             copy_all_files_from_desktop()
         elif user_choice == 5:
