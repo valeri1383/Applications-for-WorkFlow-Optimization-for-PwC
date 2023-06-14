@@ -9,6 +9,7 @@ import pyaudio
 import wave
 from tkinter import messagebox
 from tkinter import *
+import tkinter as tk
 
 
 def test_success():
@@ -38,6 +39,9 @@ def welcome_box():
     win.after(3000, close_window)
     win.mainloop()
     time.sleep(1)
+
+
+
 
 
 def operation_end_notification(msg):
@@ -397,23 +401,54 @@ keyboard_test = keyboard_test()
 current_operation_notification('CHECKING THE BRIGHTNESS FUNCTIONALITY')
 time.sleep(1)
 
-def run(cmd):
-    completed = subprocess.run(["powershell", "-Command", cmd], capture_output=True)
-    return completed
+def submit_response():
+    user_response = entry.get()
+    # Do something with the user's response
+    #print(type(str(user_response)))
 
+    def run(cmd):
+        completed = subprocess.run(["powershell", "-Command", cmd], capture_output=True)
+        return completed
 
-if __name__ == '__main__':
-    print()
-    take_brightness = input("Please enter the brightness level: ")
-    command = "(Get-WmiObject -Namespace root/WMI -Class WmiMonitorBrightnessMethods).WmiSetBrightness(1," + take_brightness + ")"
-    hello_command = f"Write-Host {command}"
-    hello_info = run(hello_command)
+    if __name__ == '__main__':
+        print()
+        # take_brightness = input("Please enter the brightness level: ")
+        brightness_lvl = user_response
+        command = "(Get-WmiObject -Namespace root/WMI -Class WmiMonitorBrightnessMethods).WmiSetBrightness(1," + brightness_lvl + ")"
+        hello_command = f"Write-Host {command}"
+        hello_info = run(hello_command)
 
-counter = 0
+    counter = 0
+    # You can also close the window here if needed
 
-#print("\n--- Brightness test has been performed. ---\n")
-operation_end_notification('BRIGHTNESS Test\n\n has been performed!')
-time.sleep(1)
+root = tk.Tk()
+root.update_idletasks()
+width = root.winfo_width()
+frm_width = root.winfo_rootx() - root.winfo_x()
+win_width = width + 6 * frm_width
+height = root.winfo_height()
+titlebar_height = root.winfo_rooty() - root.winfo_y()
+win_height = height + titlebar_height + frm_width
+x = root.winfo_screenwidth() // 2 - win_width // 2
+y = root.winfo_screenheight() // 2 - win_height // 2
+root.geometry('{}x{}+{}+{}'.format(350, 300, x, y))
+root.deiconify()
+root.configure(bg='light cyan')
+
+# Create a label for the question
+question_label = Label(root,bg='light cyan', text="Please enter the brightness level from 0 to 100: ")
+question_label.pack(anchor="center")
+
+# Create an entry field for user input
+entry = tk.Entry(root)
+entry.pack()
+
+# Create a button to submit the response
+submit_button = tk.Button(root, text="Submit", command=submit_response)
+submit_button.pack()
+
+root.mainloop()
+
 
 brightness_test = test_success()
 
