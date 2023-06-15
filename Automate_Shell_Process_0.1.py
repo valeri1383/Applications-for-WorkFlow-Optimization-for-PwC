@@ -10,6 +10,9 @@ import wave
 from tkinter import messagebox
 from tkinter import *
 import tkinter as tk
+import keyboard
+import winsound
+
 
 
 def test_success():
@@ -21,6 +24,13 @@ def test_success():
     if user_answer == 'yes':
         return 'Pass'
     return 'FALSE'
+
+
+def play_sound(e):
+    frequency = 1000
+    duration = 200
+    winsound.Beep(frequency, duration)
+
 
 
 def welcome_box():
@@ -39,8 +49,6 @@ def welcome_box():
     win.after(3000, close_window)
     win.mainloop()
     time.sleep(1)
-
-
 
 
 
@@ -166,8 +174,13 @@ def keyboard_test():
     #print(f"*" * 4 + "  CHECKING THE KEYBOARD FUNCTIONALITY   " + "*" * 4)
     #print()
     current_operation_notification('CHECKING THE KEYBOARD FUNCTIONALITY')
+    keyboard.on_press(play_sound)
     time.sleep(1)
     os.system("notepad.exe ")
+    #time.sleep(1)
+    #messagebox.showinfo('PRESS ESC BUTTON', 'Please press "ESC" button')
+    #keyboard.wait('esc')
+    keyboard.unhook_all()
     time.sleep(2)
     #print("\n--- Keyboard test has been performed. ---\n")
     operation_end_notification('KEYBOARD Test\n\n has been performed!')
@@ -263,6 +276,9 @@ def testing_internet():
     current_operation_notification('CHECKING THE WI-FI CARD')
     time.sleep(2)
     os.system('PING 8.8.8.8')
+    print()
+    time.sleep(1)
+    print('If you see replays this mean the test is Successful!\n')
     #print("\n--- Internet connection test has been performed. ---\n")
     time.sleep(1)
     operation_end_notification('WI-FI CARD Test\n\n has been performed!')
