@@ -1,4 +1,5 @@
 import csv
+import shutil
 import subprocess,time, os
 import platform
 from datetime import datetime
@@ -163,7 +164,7 @@ def microphone_test():
     wave_file.close()
     os.startfile("output.wav")
     time.sleep(5)
-    #print("\n--- Microphone test has been performed. ---\n")
+    #os.remove("\\\pwcglb.com\gb\PCmover_Data\A. Tech Support Tools\Valeri\Automatic Inspection\output.wav")
     operation_end_notification('MICROPHONE Test\n\n has been performed!')
     time.sleep(1)
     mic_test = test_success()
@@ -196,7 +197,7 @@ def camera_check():
     current_operation_notification('CHECKING THE CAMERA FUNCTIONALITY')
     time.sleep(2)
     subprocess.run('start microsoft.windows.camera:', shell=True)
-    time.sleep(2)
+    time.sleep(4)
     subprocess.run('Taskkill /IM WindowsCamera.exe /F', shell=True)
     time.sleep(2)
     #print("\n--- Camera test has been performed. ---\n")
@@ -473,7 +474,8 @@ brightness_test = test_success()
 usb_test = listing_usb_info()
 
 # Writing to CSV file
-with open('Inspected_PC.csv', 'a', newline='') as csvfile:
+# "\\pwcglb.com\gb\PCmover_Data\A. Tech Support Tools\Valeri\Automatic Inspection\Inspected_PC.csv"
+with open('\\\pwcglb.com\gb\PCmover_Data\A. Tech Support Tools\Valeri\Automatic Inspection\Inspected_PC.csv', 'a', newline='') as csvfile:
     fieldnames = ['User', 'Asset N', 'Time Inspected', 'Network Card test', 'Camera Test',
                   'Operating System Test', 'Speakers Test', 'Microphone Test', 'Battery Test',
                   'Keyboard Test', 'Brightness Test', 'USB Ports test']
