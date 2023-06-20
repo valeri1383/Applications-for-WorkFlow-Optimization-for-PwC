@@ -292,14 +292,15 @@ def testing_internet():
 
 def battery_test():
     battery = psutil.sensors_battery()
-
     if battery is None:
         print("Battery information not available.")
     else:
         plugged = battery.power_plugged
         percent = battery.percent
         result = f"Plugged in: {'Yes' if plugged else 'No'} | Remaining: {percent}%"
-        return result
+        return result, plugged
+
+
 
 
 # getting the GUID username
@@ -307,23 +308,6 @@ def getting_username():
     user = os.getlogin()
     return user
 
-
-
-def open_notepad_with_User_Info(self):
-    current_file = self
-    with open('current_file,txt', 'w') as file:
-        name = getting_username()
-        time = get_current_time()
-        asset = asset_check()
-        file.write("Camera Test: OK\n")
-        file.write("Brightness Test: OK\n")
-        file.write("Operating System Test: OK\n")
-        file.write("Internet Test: OK\n")
-        file.write("Sound Test: OK\n")
-        file.write('\n')
-        file.write(f"User: {name}\nTime: {time}\nAsset N: {asset}\n")
-
-    os.system("notepad.exe " + 'current_file')
 
 
 # displaying the operating system
@@ -397,6 +381,17 @@ internet_test = testing_internet()
 # Testing the camera
 camera_test = camera_check()
 
+# Battery test
+current_operation_notification('CHECKING THE BATTERY STATUS')
+battery_status = battery_test()[1]
+time.sleep(1)
+if battery_status:
+    messagebox.showwarning('Battery Status', 'Battery is CHARGING')
+else:
+    messagebox.showerror('Battery Status', 'Battery is NOT CHARGING')
+time.sleep(1)
+operation_end_notification('BATTERY TEST\n\n has been performed!')
+time.sleep(1)
 
 # Displaying the operating system
 os_test = os_info()
@@ -473,6 +468,32 @@ brightness_test = test_success()
 # Listing all USB info
 usb_test = listing_usb_info()
 
+
+
+with open('RESULT.txt', 'w') as file:
+    name = getting_username()
+    time = get_current_time()
+    asset = asset_check()
+
+    file.write(f'Asset N: {asset} \n')
+    file.write(f'Time Inspected: {time} \n')
+    file.write(f'Network Card test: {internet_test} \n')
+    file.write(battery_test()[0])
+    file.write(f'\nCamera Test: {camera_test} \n')
+    file.write(f'Operating System Test: {os_test} \n')
+    file.write(f'Speakers Test: {speakers_test} \n')
+    file.write(f'Microphone Test: {mic_test} \n')
+    file.write(f'Keyboard Test: {keyboard_test} \n')
+    file.write(f'Brightness Test: {brightness_test} \n')
+    file.write(f'USB Ports test: {usb_test} \n')
+    file.write('\n')
+    #file.write(f"User: {name}\nTime: {time}\nAsset N: {asset}\n")
+
+
+
+
+
+
 # Writing to CSV file
 # "\\pwcglb.com\gb\PCmover_Data\A. Tech Support Tools\Valeri\Automatic Inspection\Inspected_PC.csv"
 with open('\\\pwcglb.com\gb\PCmover_Data\A. Tech Support Tools\Valeri\Automatic Inspection\Inspected_PC.csv', 'a', newline='') as csvfile:
@@ -485,7 +506,7 @@ with open('\\\pwcglb.com\gb\PCmover_Data\A. Tech Support Tools\Valeri\Automatic 
     user = getting_username()
     asset = asset_check()
     time_inspected = get_current_time()
-    battery_lvl = battery_test()
+    battery_lvl = battery_test()[0]
 
     info = {f'User': user,
             f'Asset N': asset,
@@ -507,3 +528,5 @@ print()
 current_operation_notification('ALL TEST ARE DONE. HAVE A NICE DAY')
 
 time.sleep(2)
+
+
