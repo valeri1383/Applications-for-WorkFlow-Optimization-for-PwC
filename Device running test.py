@@ -4,7 +4,8 @@ import win32com.client
 import time
 from tkinter import messagebox
 from tkinter import *
-import csv
+import subprocess
+from gtts import gTTS
 
 
 
@@ -43,6 +44,7 @@ def writting_to_text_file():
         else:
             file.write('All Devices are functioning properly\n')
 
+
 def custom_message_box(text):
     def close_window():
         win.destroy()
@@ -59,6 +61,16 @@ def custom_message_box(text):
     #win.after(1500, close_window)
     win.mainloop()
     time.sleep(1)
+
+
+def text_to_speech(text, output_file):
+    tts = gTTS(text=text, lang='en')  # 'en' specifies English language
+    tts.save(output_file)
+
+
+def close_windows_media_player():
+    # Use the taskkill command to forcefully terminate Windows Media Player process
+    subprocess.run(["taskkill", "/f", "/im", "wmplayer.exe"], shell=True)
 
 
 def get_device_status(device):
@@ -114,12 +126,27 @@ devices_checked()
 problem_devices = check_all_devices_status()[1]
 updated_devices = [x for x in problem_devices]
 if len(updated_devices) > 0:
+    input_text_2 = "You have driver which is not functioning properly."
+    output_filename = "output.mp3"
+    text_to_speech(input_text_2, output_filename)
+    os.system(f"start {output_filename}")
+    time.sleep(4)
+    close_windows_media_player()
     messagebox.showwarning('Warning', 'There are devices who are Not running properly')
+
 formatted_output = '\n'.join(updated_devices)
 
 if len(updated_devices) > 0:
     custom_message_box(formatted_output)
 else:
+    input_text = "All your drivers are functioning normally."
+    output_filename = "output.mp3"
+
+    text_to_speech(input_text, output_filename)
+
+    os.system(f"start {output_filename}")
+    time.sleep(4)
+    close_windows_media_player()
     messagebox.showinfo('Devices / Drivers function normally', 'All Devices / Drivers are functioning normally')
 
 #os.startfile('device_status.txt')
