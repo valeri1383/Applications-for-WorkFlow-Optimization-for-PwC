@@ -37,7 +37,7 @@ def clear_fields():
 
 # Create the main window
 root = tk.Tk()
-root.title("Password Cipher App")
+root.title("Password Sharing Cipher App")
 root.geometry('500x200')
 
 # Configure grid to center content
@@ -48,21 +48,21 @@ for widget in root.winfo_children():
     widget.grid_configure(padx=1, pady=1, sticky="nsew")
 
 # Create widgets
-label_password = tk.Label(root, text="Enter Password:")
+label_password = tk.Label(root, text="Enter Password:", font='bold')
 entry_password = tk.Entry(root, show='*')
 
-label_encrypted_password = tk.Label(root, text="Encrypted Password:")
-button_encrypt = tk.Button(root, text="Encrypt", command=encrypt_button_click)
+label_encrypted_password = tk.Label(root, text="Encrypted Password:", font='bold')
+button_encrypt = tk.Button(root, text="Encrypt", command=encrypt_button_click, bg='ivory2')
 
-copy_button = tk.Button(root, text="Copy Encrypted", command=encrypt_button_click)
+copy_button = tk.Button(root, text="Copy Encrypted\n Password", command=encrypt_button_click, bg='ivory2')
 
-label_encrypted_input = tk.Label(root, text="Enter Encrypted Password:")
+label_encrypted_input = tk.Label(root, text="Enter Encrypted Password:", font='bold')
 entry_encrypted_password = tk.Entry(root)
 
-label_decrypted_password = tk.Label(root, text="Decrypted Password:")
-button_decrypt = tk.Button(root, text="Decrypt", command=decrypt_button_click)
+label_decrypted_password = tk.Label(root, text="Decrypted Password:", font='bold')
+button_decrypt = tk.Button(root, text="Decrypt", command=decrypt_button_click, bg='ivory2')
 
-button_clear = tk.Button(root, text="Clear Fields", command=clear_fields)
+button_clear = tk.Button(root, text="Clear Fields", command=clear_fields, bg='ivory2')
 
 label_encrypted_display = tk.Label(root, text="Encrypted Password Display:")
 entry_encrypted_display = tk.Entry(root, state='readonly', readonlybackground='lightgray')
