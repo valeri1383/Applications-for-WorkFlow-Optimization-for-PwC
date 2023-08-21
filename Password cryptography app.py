@@ -1,18 +1,32 @@
 import tkinter as tk
 from cryptography.fernet import Fernet
 import pyperclip
+import pyttsx3
+from tkinter import messagebox
+
+
+def text_to_speach(text):
+    engine = pyttsx3.init()
+    voices = engine.getProperty('voices')
+    engine.setProperty('volume', 1.0)
+    engine.setProperty('voice', voices[1].id)
+    engine.say(text)
+    engine.runAndWait()
 
 
 key = b'_1Z0cZ30MHGpJvqTADoBkbegv4k_LQDl6b7NwDZB9Zc='
 cipher_suite = Fernet(key)
 
+
 def encrypt_password(password):
     encrypted_password = cipher_suite.encrypt(password.encode())
     return encrypted_password
 
+
 def decrypt_password(encrypted_password):
     decrypted_password = cipher_suite.decrypt(encrypted_password).decode()
     return decrypted_password
+
 
 def encrypt_button_click():
     password = entry_password.get()
@@ -23,10 +37,17 @@ def encrypt_button_click():
     entry_encrypted_display.insert(0, encrypted_password_str)
     pyperclip.copy(encrypted_password_str)
 
+
 def decrypt_button_click():
     encrypted_password = entry_encrypted_password.get()
-    decrypted_password = decrypt_password(encrypted_password.encode())
-    label_decrypted_password.config(text="Decrypted Password: " + decrypted_password)
+    try:
+        decrypted_password = decrypt_password(encrypted_password.encode())
+        label_decrypted_password.config(text="Decrypted Password: " + decrypted_password)
+        text_to_speach('The password has been decrypted.')
+    except:
+        messagebox.showerror('Error', 'The password pattern is not matching.')
+        text_to_speach('The encrypted pattern is incorrect. ')
+
 
 def clear_fields():
     entry_password.delete(0, tk.END)
@@ -34,11 +55,15 @@ def clear_fields():
     entry_encrypted_display.delete(0, tk.END)
     label_encrypted_password.config(text="Encrypted Password: ")
     label_decrypted_password.config(text="Decrypted Password: ")
+    text_to_speach('Fields has been cleared')
 
 # Create the main window
 root = tk.Tk()
 root.title("Password Sharing Cipher App")
-root.geometry('500x200')
+root.geometry('550x250')
+text_to_speach('Welcome to the password sharing application')
+
+
 
 # Configure grid to center content
 root.grid_columnconfigure(1, weight=1)
@@ -88,3 +113,4 @@ button_clear.grid(row=4, column=0, columnspan=2, padx=10, pady=10)
 
 # Start the Tkinter event loop
 root.mainloop()
+text_to_speach('Goodbye')
