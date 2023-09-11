@@ -3,7 +3,16 @@ import subprocess
 import time
 import keyboard as kb
 from pathlib import Path
+from tkinter import messagebox
+import pyttsx3
 
+def text_to_speach(text):
+    engine = pyttsx3.init()
+    voices = engine.getProperty('voices')
+    engine.setProperty('volume', 1.0)
+    engine.setProperty('voice', voices[1].id)
+    engine.say(text)
+    engine.runAndWait()
 
 def formating_the_drive():
     subprocess.run(["powershell", "Start-Process", "cmd.exe", "-verb", "RunAs"])
@@ -52,7 +61,7 @@ def formating_the_drive():
     kb.write('exit')
     kb.press('enter')
 
-
+messagebox.showwarning("Info", 'This process will take aprox. 10 min.')
 formating_the_drive()
 
 time.sleep(2)
@@ -101,4 +110,10 @@ else:
     print("Destination folder on drive D: does not exist. Using drive E: instead.")
     destination_folder = destination_folder_e
 
+
 copy_with_progress(source_folder, destination_folder)
+
+text_to_speach('Your bootable flash stick is ready.')
+messagebox.showinfo("Time is up", "The flash drive is ready")
+
+
