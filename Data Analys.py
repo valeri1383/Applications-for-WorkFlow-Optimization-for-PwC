@@ -4,69 +4,7 @@ import numpy as np
 
 # New dataset provided as a multi-line string
 new_data = """
-HP 840 G8 i7	Valeri Vasilev	01/11/2023
-Lenovo X1 Yoga G5	Valeri Vasilev	01/11/2023
-Lenovo X1 Yoga G6	Valeri Vasilev	01/11/2023
-Lenovo X1 Yoga G6 EP	Valeri Vasilev	01/11/2023
-Lenovo X1 Yoga G6	Debanga Khatanier	03/11/2023
-Lenovo X1 Yoga G6	Debanga Khatanier	03/11/2023
-HP 840 G7	Debanga Khatanier	03/11/2023
-Lenovo X1 Yoga G6 EP	Debanga Khatanier	03/11/2023
-Lenovo X1 Yoga G5 2021	Debanga Khatanier	03/11/2023
-Lenovo X1 Yoga G6 EP	John Kemp	02/11/2023
-Lenovo X1 Yoga G6 EP	Rajnesh Bangerh	06/11/2023
-Lenovo X1 Yoga G6 EP	Rajnesh Bangerh	06/11/2023
-Lenovo X1 Yoga G6 EP	Rajnesh Bangerh	06/11/2023
-Lenovo X1 Yoga G6 EP	Rajnesh Bangerh	06/11/2023
-Lenovo X1 Yoga G6 EP	Rajnesh Bangerh	06/11/2023
-Lenovo X1 Yoga G6 EP	Rajnesh Bangerh	06/11/2023
-HP 840 G8 i7	Rajnesh Bangerh	06/11/2023
-Lenovo X1 Yoga G6 EP	Debanga Khatanier	06/11/2023
-HP 840 G8 i7	Debanga Khatanier	06/11/2023
-HP 840 G8 i7	Debanga Khatanier	06/11/2023
-Lenovo X1 Yoga G6 EP	Debanga Khatanier	06/11/2023
-Lenovo X1 Yoga G6 EP	Debanga Khatanier	06/11/2023
-HP 840 G8 i7	Debanga Khatanier	06/11/2023
-HP 840 G7	Valeri Vasilev	08/11/2023
-Lenovo X1 Yoga G6 EP	Valeri Vasilev	08/11/2023
-HP 840 G7	Valeri Vasilev	08/11/2023
-HP 840 G8 i7	Valeri Vasilev	09/11/2023
-HP 840 G8 i7	Valeri Vasilev	09/11/2023
-HP 840 G8 i7	Valeri Vasilev	09/11/2023
-Lenovo X1 Yoga G6 EP	Keith Ochaya	10/11/2023
-HP 840 G8 i7	Valeri Vasilev	10/11/2023
-Lenovo X1 Yoga G6	Valeri Vasilev	10/11/2023
-Lenovo X1 Yoga G6	Valeri Vasilev	10/11/2023
-Lenovo X1 Yoga G6	Valeri Vasilev	10/11/2023
-Lenovo X1 Yoga G6	Valeri Vasilev	10/11/2023
-Lenovo X1 Yoga G6	Valeri Vasilev	10/11/2023
-Lenovo X1 Yoga G6	Valeri Vasilev	10/11/2023
-Lenovo X1 Yoga G6	Valeri Vasilev	10/11/2023
-Lenovo X1 Yoga G6 EP	Keith Ochaya	10/11/2023
-Lenovo X1 Yoga G6 EP	Keith Ochaya	10/11/2023
-Lenovo X1 Yoga G6	Keith Ochaya	10/11/2023
-Lenovo X1 Yoga G6 EP	Keith Ochaya	10/11/2023
-HP 840 G8 i7	Keith Ochaya	14/11/2023
-HP 840 G8 i7	Keith Ochaya	14/11/2023
-HP 840 G8 i7	Keith Ochaya	14/11/2023
-Lenovo X1 Yoga G6 EP	Keith Ochaya	14/11/2023
-Lenovo X1 Yoga G6	Keith Ochaya	14/11/2023
-Lenovo X1 Yoga G6	Keith Ochaya	17/11/2023
-Lenovo X1 Yoga G6	Keith Ochaya	17/11/2023
-Microsoft Surface Pro 7+	Keith Ochaya	17/11/2023
-Lenovo X1 Yoga G5	Keith Ochaya	20/11/2023
-Lenovo X1 Yoga G5 2021	Keith Ochaya	20/11/2023
-Lenovo X1 Yoga G5	Rajnesh Bangerh	20/11/2023
-Lenovo X1 Yoga G6	Rajnesh Bangerh	20/11/2023
-Lenovo X1 Yoga G6	Rajnesh Bangerh	20/11/2023
-Lenovo X1 Yoga G6	Rajnesh Bangerh	20/11/2023
-Lenovo X1 Yoga G6	Rajnesh Bangerh	20/11/2023
-Lenovo X1 Yoga G6	Rajnesh Bangerh	20/11/2023
-HP 840 G8 i7	Keith Ochaya	20/11/2023
-Lenovo X1 Yoga G6 EP	Keith Ochaya	20/11/2023
-Lenovo X1 Yoga G6	Keith Ochaya	20/11/2023
-Lenovo X1 Yoga G6 EP	Keith Ochaya	20/11/2023
-Lenovo X1 Yoga G6	Keith Ochaya	20/11/2023
+
 """
 
 def visualize_the_names(data):
