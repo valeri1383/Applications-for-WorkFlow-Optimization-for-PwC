@@ -67,6 +67,34 @@ Lenovo X1 Yoga G6 EP	Keith Ochaya	20/11/2023
 Lenovo X1 Yoga G6	Keith Ochaya	20/11/2023
 Lenovo X1 Yoga G6 EP	Keith Ochaya	20/11/2023
 Lenovo X1 Yoga G6	Keith Ochaya	20/11/2023
+Lenovo X1 Yoga G6	Keith Ochaya	21/11/2023
+Lenovo X1 Yoga G6	Keith Ochaya	21/11/2023
+Lenovo X1 Yoga G6	Keith Ochaya	21/11/2023
+Lenovo X1 Yoga G6	Keith Ochaya	21/11/2023
+Lenovo X1 Yoga G6	Keith Ochaya	21/11/2023
+HP 840 G8 i7	Keith Ochaya	21/11/2023
+HP 840 G7	Keith Ochaya	21/11/2023
+Lenovo X1 Yoga G6	Keith Ochaya	21/11/2023
+Lenovo X1 Yoga G6	John Kemp	21/11/2023
+Lenovo X1 Yoga G6	John Kemp	21/11/2023
+Lenovo X1 Yoga G6	John Kemp	21/11/2023
+HP 840 G8 i7	John Kemp	21/11/2023
+HP 840 G8 i7	Peter Sosu	22/11/2023
+HP 840 G8 i7	Peter Sosu	22/11/2023
+HP 840 G8 i7	Peter Sosu	22/11/2023
+Lenovo X1 Yoga G6	Valeri Vasilev	24/11/2023
+HP 840 G7	Valeri Vasilev	24/11/2023
+HP 840 G8 i7	Valeri Vasilev	24/11/2023
+HP 840 G7	Keith Ochaya	24/11/2023
+Lenovo X1 Yoga G6	Keith Ochaya	24/11/2023
+HP 840 G7	Keith Ochaya	24/11/2023
+Lenovo X1 Yoga G5	Rajnesh Bangerh	24/11/2023
+Lenovo X1 Yoga G6	Rajnesh Bangerh	24/11/2023
+HP 840 G8 i7	Rajnesh Bangerh	24/11/2023
+Lenovo X1 Yoga G6	Rajnesh Bangerh	24/11/2023
+Lenovo X1 Yoga G6	John Kemp	24/11/2023
+Lenovo X1 Yoga G5 2021	John Kemp	24/11/2023
+Lenovo X1 Yoga G6	John Kemp	24/11/2023
 
 """
 

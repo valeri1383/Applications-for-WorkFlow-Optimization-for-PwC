@@ -5,147 +5,124 @@ from io import StringIO
 
 data_for_model_percentage = """
 Model\tTester\tDate\tStatus
-Lenovo X1 Yoga G6 EP	Rajnesh Bangerh	13/07/2023	FAIL
-HP 840 G8 i7	Keith Ochaya	14/07/2023	PASS
-HP 840 G8 i7	Keith Ochaya	14/07/2023	PASS
-Lenovo X1 Yoga G6	Keith Ochaya	14/07/2023	PASS
-Lenovo X1 Yoga G6	Rajnesh Bangerh	17/07/2023	PASS
-Lenovo X1 Yoga G6	Rajnesh Bangerh	17/07/2023	PASS
-HP 840 G8 i7	Rajnesh Bangerh	17/07/2023	PASS
-HP 840 G8 i7	Rajnesh Bangerh	17/07/2023	PASS
-Lenovo X1 Yoga G6 EP	Ashish Bhudia	17/07/2023	PASS
-Lenovo X1 Yoga G6	Ashish Bhudia	17/07/2023	PASS
-HP 840 G7	Ashish Bhudia	17/07/2023	PASS
-HP 840 G8 i7	Sulman Bawhab	20/07/2023	PASS
-Lenovo X1 Yoga G5	Sulman Bawhab	20/07/2023	PASS
-Lenovo X1 Yoga G6	Sulman Bawhab	20/07/2023	PASS
-HP 840 G8 i7	Sulman Bawhab	20/07/2023	FAIL
-Lenovo X1 Yoga G6	Sulman Bawhab	20/07/2023	PASS
-Lenovo X1 Yoga G6	Sulman Bawhab	20/07/2023	PASS
-Lenovo X1 Yoga G6	Keith Ochaya	20/07/2023	PASS
-Lenovo X1 Yoga G6	Debanga Khatanier	20/07/2023	PASS
-HP 840 G8 i7	Keith Ochaya	20/07/2023	FAIL
-Lenovo X1 Yoga G6	Debanga Khatanier	21/07/2023	PASS
-HP 840 G8 i7	Keith Ochaya	24/07/2023	PASS
-Lenovo X1 Yoga G6	Keith Ochaya	24/07/2023	PASS
-HP 840 G8 i7	Keith Ochaya	24/07/2023	PASS
-Lenovo X1 Yoga G6	Keith Ochaya	25/07/2023	PASS
-Lenovo X1 Yoga G6	John Kemp	27/07/2023	PASS
-Lenovo X1 Yoga G6	Ashish Bhudia	27/07/2023	FAIL
-Lenovo X1 Yoga G6	Ashish Bhudia	27/07/2023	PASS
-Lenovo X1 Yoga G6	Ashish Bhudia	27/07/2023	PASS
-Lenovo X1 Yoga G6	Ashish Bhudia	27/07/2023	PASS
-Lenovo X1 Yoga G6 EP	Ashish Bhudia	27/07/2023	FAIL
-Lenovo X1 Yoga G6	Ashish Bhudia	27/07/2023	PASS
-Lenovo X1 Yoga G6	Ashish Bhudia	27/07/2023	PASS
-HP 840 G8 i7	Ashish Bhudia	27/07/2023	PASS
-HP 840 G8 i7	Ashish Bhudia	27/07/2023	PASS
-HP 840 G8 i7	Ashish Bhudia	27/07/2023	PASS
-HP 840 G8 i7	Ashish Bhudia	27/07/2023	FAIL
-Lenovo X1 Yoga G6	Keith Ochaya	01/08/2023	FAIL
-Lenovo X1 Yoga G6	Keith Ochaya	01/08/2023	PASS
-Lenovo X1 Yoga G6	Keith Ochaya	01/08/2023	PASS
-Lenovo X1 Yoga G6	Keith Ochaya	01/08/2023	PASS
-HP 840 G8 i7	Keith Ochaya	01/08/2023	PASS
-HP 840 G8 i7	Keith Ochaya	01/08/2023	PASS
-Lenovo X1 Yoga G6	Rajnesh Bangerh	01/08/2023	PASS
-Lenovo X1 Yoga G6	Rajnesh Bangerh	01/08/2023	PASS
-HP 840 G8 i7	Rajnesh Bangerh	01/08/2023	PASS
-HP 840 G7	Rajnesh Bangerh	01/08/2023	PASS
-HP 840 G7	Keith Ochaya	02/08/2023	PASS
-Lenovo X1 Yoga G6	Debanga Khatanier	08/02/2023	PASS
-HP 840 G8 i7	Debanga Khatanier	08/02/2023	PASS
-HP 840 G8 i7	Debanga Khatanier	08/02/2023	PASS
-Lenovo X1 Yoga G6	Debanga Khatanier	08/02/2023	PASS
-Lenovo X1 Yoga G6	Debanga Khatanier	08/02/2023	FAIL
-Lenovo X1 Yoga G6	Debanga Khatanier	08/02/2023	PASS
-Lenovo X1 Yoga G6	John Kemp	07/08/2023	PASS
-Lenovo X1 Yoga G6	John Kemp	07/08/2023	PASS
-HP 840 G8 i7	John Kemp	07/08/2023	PASS
-HP 840 G8 i7	John Kemp	07/08/2023	FAIL
-HP 840 G8 i7	John Kemp	07/08/2023	PASS
-HP 840 G8 i7	John Kemp	07/08/2023	FAIL
-HP 840 G8 i7	John Kemp	07/08/2023	PASS
-Lenovo X1 Yoga G6	John Kemp	07/08/2023	PASS
-HP 840 G8 i7	Rajnesh Bangerh	08/08/2023	FAIL
-HP 840 G8 i7	Valeri Vasilev	08/09/2023	PASS
-Lenovo X1 Yoga G6	Valeri Vasilev	08/09/2023	PASS
-Lenovo X1 Yoga G6	Valeri Vasilev	08/09/2023	PASS
-Lenovo X1 Yoga G6	Valeri Vasilev	08/09/2023	PASS
-Lenovo X1 Yoga G6	Valeri Vasilev	08/09/2023	PASS
-Lenovo X1 Yoga G6	Valeri Vasilev	08/09/2023	PASS
-Lenovo X1 Yoga G6	Valeri Vasilev	08/09/2023	FAIL
-Lenovo X1 Yoga G6	Valeri Vasilev	08/09/2023	PASS
-Lenovo X1 Yoga G6	Valeri Vasilev	08/09/2023	PASS
-HP 840 G8 i7	Valeri Vasilev	08/09/2023	PASS
-HP 840 G8 i7	Valeri Vasilev	08/09/2023	PASS
-HP 840 G8 i7	Valeri Vasilev	08/09/2023	PASS
-Lenovo X1 Yoga G6	Debanga Khatanier	15/08/2023	PASS
-Lenovo X1 Yoga G6	Keith Ochaya	16/08/2023	PASS
-HP 840 G8 i7	Keith Ochaya	16/08/2023	PASS
-Lenovo X1 Yoga G6	Keith Ochaya	16/08/2023	PASS
-Lenovo X1 Yoga G5	Debanga Khatanier	17/08/2023	PASS
-HP 840 G8 i7	Debanga Khatanier	17/08/2023	PASS
-Lenovo X1 Yoga G5	Debanga Khatanier	17/08/2023	FAIL
-Lenovo X1 Yoga G5	Debanga Khatanier	17/08/2023	PASS
-HP 840 G8 i7	Keith Ochaya	17/08/2023	FAIL
-HP 840 G7	Keith Ochaya	17/08/2023	PASS
-Lenovo X1 Yoga G6	Keith Ochaya	17/08/2023	PASS
-HP 840 G8 i7	Debanga Khatanier	21/08/2023	PASS
-HP 840 G8 i7	Debanga Khatanier	21/08/2023	PASS
-Lenovo X1 Yoga G6	Debanga Khatanier	21/08/2023	PASS
-Lenovo X1 Yoga G5	Debanga Khatanier	21/08/2023	PASS
-HP 840 G8 i7	Debanga Khatanier	21/08/2023	PASS
-HP 840 G8 i7	Debanga Khatanier	21/08/2023	FAIL
-HP 840 G8 i7	Debanga Khatanier	21/08/2023	PASS
-Lenovo X1 Yoga G5	Debanga Khatanier	21/08/2023	PASS
-HP 840 G8 i7	John Kemp	22/08/2023	PASS
-Lenovo X1 Yoga G6	Sulman Bawhab	23/08/2023	PASS
-Lenovo X1 Yoga G6	Keith Ochaya	23/08/2023	PASS
-Lenovo X1 Yoga G6	Keith Ochaya	23/08/2023	FAIL
-Lenovo X1 Yoga G6	Debanga Khatanier	25/08/2023	PASS
-HP 840 G8 i7	Debanga Khatanier	25/08/2023	PASS
-Lenovo X1 Yoga G6	Veeresh Sajjan	30/08/2023	PASS
-HP 840 G8 i7	Veeresh Sajjan	30/08/2023	PASS
-Lenovo X1 Yoga G6	Veeresh Sajjan	30/08/2023	PASS
-Lenovo X1 Yoga G6	Veeresh Sajjan	30/08/2023	PASS
-Lenovo X1 Yoga G6	Veeresh Sajjan	30/08/2023	PASS
-Lenovo X1 Yoga G5 2021	Rajnesh Bangerh	31/08/2023	PASS
-Lenovo X1 Yoga G6	Rajnesh Bangerh	31/08/2023	PASS
-HP 840 G7	Rajnesh Bangerh	31/08/2023	PASS
-HP 840 G8 i7	Rajnesh Bangerh	31/08/2023	PASS
-Lenovo X1 Yoga G6	Rajnesh Bangerh	31/08/2023	PASS
-Lenovo X1 Yoga G6	Rajnesh Bangerh	31/08/2023	PASS
-Lenovo X1 Yoga G6	Rajnesh Bangerh	31/08/2023	PASS
-Lenovo X1 Yoga G6	Rajnesh Bangerh	31/08/2023	PASS
-Lenovo X1 Yoga G6	Rajnesh Bangerh	31/08/2023	PASS
-Lenovo X1 Yoga G6	Rajnesh Bangerh	31/08/2023	PASS
-HP 840 G8 i7	Ashish Bhudia	31/08/2023	FAIL
-Lenovo X1 Yoga G6 EP	Ashish Bhudia	31/08/2023	PASS
-Lenovo X1 Yoga G6	Ashish Bhudia	31/08/2023	PASS
-Lenovo X1 Yoga G6 EP	Ashish Bhudia	31/08/2023	PASS
-Lenovo X1 Yoga G6	Ashish Bhudia	01/09/2023	PASS
-Lenovo X1 Yoga G6	Ashish Bhudia	01/09/2023	PASS
-Microsoft Surface Pro 7+	Ashish Bhudia	01/09/2023	PASS
-HP 840 G6	Ashish Bhudia	01/09/2023	PASS
-Lenovo X1 Yoga G6	Ashish Bhudia	01/09/2023	PASS
-HP 840 G8 i7	John Kemp	04/09/2023	PASS
-HP 840 G8 i7	Debanga Khatanier	09/07/2023	PASS
-HP 840 G8 i7	Debanga Khatanier	07/09/2023	PASS
-Lenovo X1 Yoga G6	Debanga Khatanier	07/09/2023	PASS
-HP 840 G8 i7	Debanga Khatanier	07/09/2023	PASS
-Lenovo X1 Yoga G6	Debanga Khatanier	07/09/2023	PASS
-Lenovo X1 Yoga G6	Debanga Khatanier	07/09/2023	PASS
-Lenovo X1 Yoga G6	John Kemp	07/09/2023	FAIL
-HP 840 G7	Debanga Khatanier	07/09/2023	PASS
-HP 840 G8 i7	John Kemp	08/09/2023	PASS
-HP 840 G8 i7	John Kemp	08/09/2023	PASS
+HP 840 G7	Ashish Bhudia	30/10/2023	PASS
+HP ZBook Firefly G10 14	Ashish Bhudia	30/10/2023	PASS
+HP ZBook Firefly G10 14	Ashish Bhudia	30/10/2023	PASS
+Lenovo X1 Yoga G6 EP	Ashish Bhudia	30/10/2023	PASS
+HP 840 G7	Ashish Bhudia	30/10/2023	PASS
+Lenovo X1 Yoga G6 EP	Ashish Bhudia	30/10/2023	PASS
+Lenovo X1 Yoga G6 EP	Ashish Bhudia	30/10/2023	PASS
+HP 840 G7	Ashish Bhudia	30/10/2023	PASS
+HP 840 G7	Valeri Vasilev	31/10/2023	PASS
+Lenovo X1 Yoga G6 EP	Valeri Vasilev	31/10/2023	PASS
+HP 840 G7	Valeri Vasilev	31/10/2023	PASS
+HP 840 G8 i7	Valeri Vasilev	31/10/2023	PASS
+Lenovo X1 Yoga G6 EP	Keith Ochaya	31/10/2023	PASS
+Lenovo X1 Yoga G6 EP	Keith Ochaya	31/10/2023	PASS
+HP 840 G8 i7	Debanga Khatanier	31/10/2023	PASS
+HP 840 G8 i7	Debanga Khatanier	31/10/2023	PASS
+HP 840 G8 i7	Debanga Khatanier	31/10/2023	PASS
+Lenovo X1 Yoga G6 EP	Debanga Khatanier	31/10/2023	FAIL
+HP 840 G8 i7	Valeri Vasilev	01/11/2023	PASS
+Lenovo X1 Yoga G5	Valeri Vasilev	01/11/2023	PASS
+Lenovo X1 Yoga G6	Valeri Vasilev	01/11/2023	PASS
+Lenovo X1 Yoga G6 EP	Valeri Vasilev	01/11/2023	PASS
+Lenovo X1 Yoga G6	Debanga Khatanier	03/11/2023	PASS
+Lenovo X1 Yoga G6	Debanga Khatanier	03/11/2023	PASS
+HP 840 G7	Debanga Khatanier	03/11/2023	PASS
+Lenovo X1 Yoga G6 EP	Debanga Khatanier	03/11/2023	PASS
+Lenovo X1 Yoga G5 2021	Debanga Khatanier	03/11/2023	PASS
+Lenovo X1 Yoga G6 EP	John Kemp	02/11/2023	FAIL
+Lenovo X1 Yoga G6 EP	Rajnesh Bangerh	06/11/2023	PASS
+Lenovo X1 Yoga G6 EP	Rajnesh Bangerh	06/11/2023	PASS
+Lenovo X1 Yoga G6 EP	Rajnesh Bangerh	06/11/2023	PASS
+Lenovo X1 Yoga G6 EP	Rajnesh Bangerh	06/11/2023	PASS
+Lenovo X1 Yoga G6 EP	Rajnesh Bangerh	06/11/2023	PASS
+Lenovo X1 Yoga G6 EP	Rajnesh Bangerh	06/11/2023	PASS
+HP 840 G8 i7	Rajnesh Bangerh	06/11/2023	PASS
+Lenovo X1 Yoga G6 EP	Debanga Khatanier	06/11/2023	PASS
+HP 840 G8 i7	Debanga Khatanier	06/11/2023	PASS
+HP 840 G8 i7	Debanga Khatanier	06/11/2023	PASS
+Lenovo X1 Yoga G6 EP	Debanga Khatanier	06/11/2023	PASS
+Lenovo X1 Yoga G6 EP	Debanga Khatanier	06/11/2023	PASS
+HP 840 G8 i7	Debanga Khatanier	06/11/2023	PASS
+HP 840 G7	Valeri Vasilev	08/11/2023	PASS
+Lenovo X1 Yoga G6 EP	Valeri Vasilev	08/11/2023	PASS
+HP 840 G7	Valeri Vasilev	08/11/2023	PASS
+HP 840 G8 i7	Valeri Vasilev	09/11/2023	PASS
+HP 840 G8 i7	Valeri Vasilev	09/11/2023	FAIL
+HP 840 G8 i7	Valeri Vasilev	09/11/2023	PASS
+Lenovo X1 Yoga G6 EP	Keith Ochaya	10/11/2023	PASS
+HP 840 G8 i7	Valeri Vasilev	10/11/2023	PASS
+Lenovo X1 Yoga G6	Valeri Vasilev	10/11/2023	PASS
+Lenovo X1 Yoga G6	Valeri Vasilev	10/11/2023	PASS
+Lenovo X1 Yoga G6	Valeri Vasilev	10/11/2023	PASS
+Lenovo X1 Yoga G6	Valeri Vasilev	10/11/2023	PASS
+Lenovo X1 Yoga G6	Valeri Vasilev	10/11/2023	PASS
+Lenovo X1 Yoga G6	Valeri Vasilev	10/11/2023	PASS
+Lenovo X1 Yoga G6	Valeri Vasilev	10/11/2023	PASS
+Lenovo X1 Yoga G6 EP	Keith Ochaya	10/11/2023	PASS
+Lenovo X1 Yoga G6 EP	Keith Ochaya	10/11/2023	PASS
+Lenovo X1 Yoga G6	Keith Ochaya	10/11/2023	PASS
+Lenovo X1 Yoga G6 EP	Keith Ochaya	10/11/2023	PASS
+HP 840 G8 i7	Keith Ochaya	14/11/2023	PASS
+HP 840 G8 i7	Keith Ochaya	14/11/2023	PASS
+HP 840 G8 i7	Keith Ochaya	14/11/2023	PASS
+Lenovo X1 Yoga G6 EP	Keith Ochaya	14/11/2023	PASS
+Lenovo X1 Yoga G6	Keith Ochaya	14/11/2023	FAIL
+Lenovo X1 Yoga G6	Keith Ochaya	17/11/2023	PASS
+Lenovo X1 Yoga G6	Keith Ochaya	17/11/2023	PASS
+Microsoft Surface Pro 7+	Keith Ochaya	17/11/2023	PASS
+Lenovo X1 Yoga G5	Keith Ochaya	20/11/2023	PASS
+Lenovo X1 Yoga G5 2021	Keith Ochaya	20/11/2023	PASS
+Lenovo X1 Yoga G5	Rajnesh Bangerh	20/11/2023	PASS
+Lenovo X1 Yoga G6	Rajnesh Bangerh	20/11/2023	PASS
+Lenovo X1 Yoga G6	Rajnesh Bangerh	20/11/2023	PASS
+Lenovo X1 Yoga G6	Rajnesh Bangerh	20/11/2023	PASS
+Lenovo X1 Yoga G6	Rajnesh Bangerh	20/11/2023	PASS
+Lenovo X1 Yoga G6	Rajnesh Bangerh	20/11/2023	PASS
+HP 840 G8 i7	Keith Ochaya	20/11/2023	PASS
+Lenovo X1 Yoga G6 EP	Keith Ochaya	20/11/2023	PASS
+Lenovo X1 Yoga G6	Keith Ochaya	20/11/2023	PASS
+Lenovo X1 Yoga G6 EP	Keith Ochaya	20/11/2023	PASS
+Lenovo X1 Yoga G6	Keith Ochaya	20/11/2023	FAIL
+Lenovo X1 Yoga G6	Keith Ochaya	21/11/2023	PASS
+Lenovo X1 Yoga G6	Keith Ochaya	21/11/2023	PASS
+Lenovo X1 Yoga G6	Keith Ochaya	21/11/2023	PASS
+Lenovo X1 Yoga G6	Keith Ochaya	21/11/2023	PASS
+Lenovo X1 Yoga G6	Keith Ochaya	21/11/2023	PASS
+HP 840 G8 i7	Keith Ochaya	21/11/2023	FAIL
+HP 840 G7	Keith Ochaya	21/11/2023	PASS
+Lenovo X1 Yoga G6	Keith Ochaya	21/11/2023	PASS
+Lenovo X1 Yoga G6	John Kemp	21/11/2023	PASS
+Lenovo X1 Yoga G6	John Kemp	21/11/2023	PASS
+Lenovo X1 Yoga G6	John Kemp	21/11/2023	PASS
+HP 840 G8 i7	John Kemp	21/11/2023	PASS
+HP 840 G8 i7	Peter Sosu	22/11/2023	PASS
+HP 840 G8 i7	Peter Sosu	22/11/2023	PASS
+HP 840 G8 i7	Peter Sosu	22/11/2023	PASS
+Lenovo X1 Yoga G6	Valeri Vasilev	24/11/2023	PASS
+HP 840 G7	Valeri Vasilev	24/11/2023	PASS
+HP 840 G8 i7	Valeri Vasilev	24/11/2023	PASS
+HP 840 G7	Keith Ochaya	24/11/2023	PASS
+Lenovo X1 Yoga G6	Keith Ochaya	24/11/2023	PASS
+HP 840 G7	Keith Ochaya	24/11/2023	PASS
+Lenovo X1 Yoga G5	Rajnesh Bangerh	24/11/2023	PASS
+Lenovo X1 Yoga G6	Rajnesh Bangerh	24/11/2023	PASS
+HP 840 G8 i7	Rajnesh Bangerh	24/11/2023	PASS
+Lenovo X1 Yoga G6	Rajnesh Bangerh	24/11/2023	PASS
+Lenovo X1 Yoga G6	John Kemp	24/11/2023	FAIL
+Lenovo X1 Yoga G5 2021	John Kemp	24/11/2023	PASS
+Lenovo X1 Yoga G6	John Kemp	24/11/2023	PASS
 """
 
 def overview_of_good_and_bad_laptops_barchat(data):
     # Converting the string data to a pandas DataFrame
     data_io = StringIO(data)
-    df = pd.read_csv(data_io, sep='\t', parse_dates=['Date'])
+    df = pd.read_csv(data_io, sep='\t')
+
+    # Convert the 'Date' column to datetime format
+    df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y', errors='coerce')  # Handle any date parsing errors
 
     # Normalizing the status to have consistent casing
     df['Status'] = df['Status'].str.upper()
@@ -224,10 +201,13 @@ def overview_of_good_and_bad_laptops_barchat(data):
     plt.show()
 
 
-def overview_of_good_and_bad_laptops_piechart(data):
+def overview_of_good_and_bad_laptops_piechart(input_data):
     # Converting the string data to a pandas DataFrame
-    data_io = StringIO(data)
-    df = pd.read_csv(data_io, sep='\t', parse_dates=['Date'])
+    data_io = StringIO(input_data)
+    df = pd.read_csv(data_io, sep='\t')
+
+    # Convert the 'Date' column to datetime format
+    df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y', errors='coerce')  # Handle any date parsing errors
 
     # Normalizing the status to have consistent casing
     df['Status'] = df['Status'].str.upper()
@@ -238,14 +218,23 @@ def overview_of_good_and_bad_laptops_piechart(data):
     # Plotting pie charts for each model
     fig, axes = plt.subplots(1, model_status_counts.shape[0], figsize=(12, 6))
     fig.set_facecolor('grey')
+
+    # Iterate over models and their respective counts
     for ax, (model, counts) in zip(axes, model_status_counts.iterrows()):
         colors = ['red' if status == 'FAIL' else 'green' for status in counts.index]
         ax.pie(counts, labels=counts.index, autopct='%1.1f%%', startangle=90, colors=colors)
-        ax.set_title(model, rotation=30 )
+
+        # Set the title as the model name with line breaks if it's too long
+        if len(model) > 20:
+            model = '\n'.join([model[i:i + 20] for i in range(0, len(model), 20)])
+        ax.set_title(model, fontsize=12, rotation=30, ha='center')
+
+    # Filter out rows with invalid dates (if any)
+    df = df.dropna(subset=['Date'])
 
     # Setting the date frame as the overall title
     date_period = f"{df['Date'].min().strftime('%d/%m/%Y')} - {df['Date'].max().strftime('%d/%m/%Y')}"
-    plt.suptitle(date_period)
+    plt.suptitle(date_period, fontsize=14)
 
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])  # Adjust the rect so the title fits and does not overlap with the plots
     plt.show()
