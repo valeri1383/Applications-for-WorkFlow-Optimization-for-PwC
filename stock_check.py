@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 import csv
 from openpyxl import load_workbook
+from datetime import datetime
+
 
 # Function to load asset numbers from a CSV file
 def load_assets_from_csv(file_path):
@@ -10,8 +12,9 @@ def load_assets_from_csv(file_path):
         reader = csv.reader(csvfile)
         for row in reader:
             if row:  # Check if the row is not empty
-                assets.append(row[0])
+                assets.append(row)
     return assets
+
 
 # Function to load asset numbers from an Excel file
 def load_assets_from_excel(file_path):
@@ -20,12 +23,18 @@ def load_assets_from_excel(file_path):
     assets = [cell.value for cell in sheet['A'] if cell.value is not None]
     return assets
 
+
 # Function to compare asset lists
 def compare_assets(list_stock, list_scanned):
+    # Convert all asset numbers to uppercase
+    list_stock = [item[0].upper() for item in list_stock]
+    list_scanned = [item.upper() for item in list_scanned]
+
     matching_items = [item for item in list_stock if item in list_scanned]
     missing_assets = [item for item in list_stock[1:] if item not in list_scanned]
     extra_in_scanned = [item for item in list_scanned if item not in list_stock]
     return matching_items, missing_assets, extra_in_scanned
+
 
 # Function to load stock CSV file
 def load_stock_file():
@@ -35,13 +44,16 @@ def load_stock_file():
         list_stock = load_assets_from_csv(stock_file_path)
         stock_label.config(text=f"Stock file loaded: {stock_file_path}")
 
+
 # Function to load scanned Excel file
 def load_scanned_file():
     global list_scanned
-    scanned_file_path = filedialog.askopenfilename(title="Select Scanned Excel File", filetypes=[("Excel files", "*.xlsx")])
+    scanned_file_path = filedialog.askopenfilename(title="Select Scanned Excel File",
+                                                   filetypes=[("Excel files", "*.xlsx")])
     if scanned_file_path:
         list_scanned = load_assets_from_excel(scanned_file_path)
         scanned_label.config(text=f"Scanned file loaded: {scanned_file_path}")
+
 
 # Function to compare loaded files
 def load_and_compare():
@@ -54,9 +66,13 @@ def load_and_compare():
 
     update_result_label()
 
+
 # Function to update result label with colored text
 def update_result_label():
     result_text.delete(1.0, tk.END)  # Clear previous text
+
+    current_date = datetime.now().strftime("%d-%m-%Y")
+    result_text.insert(tk.END, f"EP Stock Check ({current_date})\n\n", "header")
 
     if show_accounted:
         result_text.insert(tk.END, "Accounted assets:\n", "accounted")
@@ -65,11 +81,11 @@ def update_result_label():
 
     result_text.insert(tk.END, "Missing assets:\n", "missing")
     result_text.insert(tk.END, f"{missing_assets}\n\n", "missing")
-    result_text.insert(tk.END, f"Total missing assets: {len(missing_assets)}\n\n","missing")
+    result_text.insert(tk.END, f"Total missing assets: {len(missing_assets)}\n\n", "missing")
 
     result_text.insert(tk.END, "Extra items:\n", "extra")
     result_text.insert(tk.END, f"{extra_in_scanned}\n\n", "extra")
-    result_text.insert(tk.END, f"Total extra assets: {len(extra_in_scanned)}\n\n","extra")
+    result_text.insert(tk.END, f"Total extra assets: {len(extra_in_scanned)}\n\n", "extra")
 
 
 # Function to toggle the visibility of accounted assets
@@ -78,6 +94,7 @@ def toggle_accounted_assets():
     show_accounted = not show_accounted
     update_result_label()
     toggle_button.config(text="Hide Accounted Assets" if show_accounted else "Show Accounted Assets")
+
 
 # Function to export results to a CSV file
 def export_to_csv():
@@ -89,21 +106,38 @@ def export_to_csv():
     if export_file_path:
         with open(export_file_path, mode='w', newline='') as file:
             writer = csv.writer(file)
+            current_date = datetime.now().strftime("%d-%m-%Y")
+            writer.writerow([f"EP Stock Check ({current_date})"])
+            writer.writerow(
+                ["Model", "Model Category", "Serial Number", "Company", "Location", "Install Status", "Substatus",
+                 "Stockroom"])
+
+            # Write accounted assets with all information
             writer.writerow(["Accounted Assets"])
-            writer.writerows([[item] for item in matching_items])
+            for item in matching_items:
+                for row in list_stock:
+                    if row[0].upper() == item:
+                        writer.writerow(row)
             writer.writerow([])
+
+            # Write missing assets
             writer.writerow(["Missing Assets"])
             writer.writerows([[item] for item in missing_assets])
             writer.writerow([])
+
+            # Write extra items
             writer.writerow(["Extra Items"])
             writer.writerows([[item] for item in extra_in_scanned])
+
         messagebox.showinfo("Export Successful", f"Results exported to {export_file_path}")
+
 
 # Function to copy results to clipboard
 def copy_results():
     root.clipboard_clear()
     root.clipboard_append(result_text.get(1.0, tk.END))
     messagebox.showinfo("Copied", "Results copied to clipboard")
+
 
 # Initialize global variables
 list_stock = []
@@ -144,13 +178,14 @@ export_button = tk.Button(button_frame, text="Export to CSV", fg='red', bg='ligh
 export_button.pack(side=tk.LEFT, padx=5)
 
 # Add a button to copy results to clipboard
-copy_button = tk.Button(button_frame, text="Copy Results",fg='dodger blue', bg='lightgrey', command=copy_results)
+copy_button = tk.Button(button_frame, text="Copy Results", fg='dodger blue', bg='lightgrey', command=copy_results)
 copy_button.pack(side=tk.LEFT, padx=5)
 
 result_text = tk.Text(root, wrap=tk.WORD, width=80, height=25)  # Increased size
 result_text.pack(pady=20)
 
 # Configure text tags for coloring
+result_text.tag_configure("header", foreground="black", font=("Helvetica", 12, "bold"))
 result_text.tag_configure("accounted", foreground="green")
 result_text.tag_configure("missing", foreground="red")
 result_text.tag_configure("extra", foreground="blue")
